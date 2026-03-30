@@ -35,6 +35,10 @@ export default function ScanPage() {
   function handleImageCapture(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+    // Revoke previous object URL to avoid memory leaks
+    if (item.imageUrl.startsWith("blob:")) {
+      URL.revokeObjectURL(item.imageUrl);
+    }
     const url = URL.createObjectURL(file);
     setItem((prev) => ({ ...prev, imageUrl: url }));
     setStep("review");
@@ -77,6 +81,9 @@ export default function ScanPage() {
   }
 
   function reset() {
+    if (item.imageUrl.startsWith("blob:")) {
+      URL.revokeObjectURL(item.imageUrl);
+    }
     setStep("capture");
     setItem({ name: "", description: "", imageUrl: "", price: 0, tip: 0 });
     setError(null);

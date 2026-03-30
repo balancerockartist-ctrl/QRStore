@@ -7,7 +7,8 @@ function createPrismaClient() {
   const rawUrl = process.env.DATABASE_URL ?? "file:./prisma/dev.db";
   const url = rawUrl.startsWith("file:") ? rawUrl : `file:${rawUrl}`;
   const adapter = new PrismaLibSql({ url });
-  return new PrismaClient({ adapter } as ConstructorParameters<typeof PrismaClient>[0]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return new PrismaClient({ adapter } as any);
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient();
