@@ -1,0 +1,23 @@
+{
+  "name": "qrstore",
+  "version": "1.0.0",
+  "description": "QR Store - Humanitarian QR code payment and supply chain tracking system",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test src/tests/*.test.js"
+  },
+  "keywords": [
+    "qr-code",
+    "humanitarian",
+    "supply-chain",
+    "payment"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.5.0",
+    "qrcode": "^1.5.4"
+  }
+}
